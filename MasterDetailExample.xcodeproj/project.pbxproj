@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAC285BD16C5F515008FA6D5 /* JTCStartOfDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */; };
 		AAF1C0DD16C5C5A600527D30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0DC16C5C5A600527D30 /* UIKit.framework */; };
 		AAF1C0DF16C5C5A600527D30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0DE16C5C5A600527D30 /* Foundation.framework */; };
 		AAF1C0E116C5C5A600527D30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0E016C5C5A600527D30 /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 		AAF1C10F16C5C5A700527D30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0E216C5C5A600527D30 /* CoreData.framework */; };
 		AAF1C11716C5C5A700527D30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAF1C11516C5C5A700527D30 /* InfoPlist.strings */; };
 		AAF1C11A16C5C5A700527D30 /* MasterDetailExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF1C11916C5C5A700527D30 /* MasterDetailExampleTests.m */; };
+		AAF1C12516C5C63300527D30 /* JTCDetailViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF1C12416C5C63300527D30 /* JTCDetailViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAC285BB16C5F515008FA6D5 /* JTCStartOfDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCStartOfDayViewController.h; sourceTree = "<group>"; };
+		AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCStartOfDayViewController.m; sourceTree = "<group>"; };
 		AAF1C0D916C5C5A600527D30 /* MasterDetailExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterDetailExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAF1C0DC16C5C5A600527D30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAF1C0DE16C5C5A600527D30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +72,8 @@
 		AAF1C11616C5C5A700527D30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AAF1C11816C5C5A700527D30 /* MasterDetailExampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterDetailExampleTests.h; sourceTree = "<group>"; };
 		AAF1C11916C5C5A700527D30 /* MasterDetailExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterDetailExampleTests.m; sourceTree = "<group>"; };
+		AAF1C12316C5C63300527D30 /* JTCDetailViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCDetailViewManager.h; sourceTree = "<group>"; };
+		AAF1C12416C5C63300527D30 /* JTCDetailViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCDetailViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,12 +140,16 @@
 				AAF1C0EE16C5C5A700527D30 /* JTCAppDelegate.m */,
 				AAF1C0F616C5C5A700527D30 /* MainStoryboard_iPhone.storyboard */,
 				AAF1C0F916C5C5A700527D30 /* MainStoryboard_iPad.storyboard */,
+				AAC285BB16C5F515008FA6D5 /* JTCStartOfDayViewController.h */,
+				AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */,
 				AAF1C0FF16C5C5A700527D30 /* JTCMasterViewController.h */,
 				AAF1C10016C5C5A700527D30 /* JTCMasterViewController.m */,
 				AAF1C10216C5C5A700527D30 /* JTCDetailViewController.h */,
 				AAF1C10316C5C5A700527D30 /* JTCDetailViewController.m */,
 				AAF1C0FC16C5C5A700527D30 /* MasterDetailExample.xcdatamodeld */,
 				AAF1C0E516C5C5A600527D30 /* Supporting Files */,
+				AAF1C12316C5C63300527D30 /* JTCDetailViewManager.h */,
+				AAF1C12416C5C63300527D30 /* JTCDetailViewManager.m */,
 			);
 			path = MasterDetailExample;
 			sourceTree = "<group>";
@@ -294,6 +304,8 @@
 				AAF1C0FE16C5C5A700527D30 /* MasterDetailExample.xcdatamodeld in Sources */,
 				AAF1C10116C5C5A700527D30 /* JTCMasterViewController.m in Sources */,
 				AAF1C10416C5C5A700527D30 /* JTCDetailViewController.m in Sources */,
+				AAF1C12516C5C63300527D30 /* JTCDetailViewManager.m in Sources */,
+				AAC285BD16C5F515008FA6D5 /* JTCStartOfDayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +496,7 @@
 				AAF1C11F16C5C5A700527D30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAF1C12016C5C5A700527D30 /* Build configuration list for PBXNativeTarget "MasterDetailExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				AAF1C12216C5C5A700527D30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -9,12 +9,20 @@
 #import "JTCAppDelegate.h"
 
 #import "JTCMasterViewController.h"
+#import "JTCDetailViewManager.h"
+
+@interface JTCAppDelegate()
+
+@property (strong,nonatomic) JTCDetailViewManager *detailViewManager;
+
+@end
 
 @implementation JTCAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize detailViewManager = _detailViewManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,7 +35,11 @@
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
         JTCMasterViewController *controller = (JTCMasterViewController *)masterNavigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
-    } else {
+        
+        self.detailViewManager = [[JTCDetailViewManager alloc] initWithSplitViewController:splitViewController];
+        self.detailViewManager.detailViewController = (UIViewController<SubstitutableDetailViewController> *)navigationController;
+        
+        } else {
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
         JTCMasterViewController *controller = (JTCMasterViewController *)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;

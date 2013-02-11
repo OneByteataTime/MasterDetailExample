@@ -7,8 +7,9 @@
 //
 
 #import "JTCMasterViewController.h"
-
 #import "JTCDetailViewController.h"
+#import "JTCDetailViewManager.h"
+#import "JTCStartOfDayViewController.h"
 
 @interface JTCMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -34,6 +35,8 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (JTCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,13 +69,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,8 +115,34 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = object;
+        
+        // Get a reference to the DetailViewManager.
+        // DetailViewManager is the delegate of our split view.
+        JTCDetailViewManager *detailViewManager = (JTCDetailViewManager*)self.splitViewController.delegate;
+        
+        NSUInteger row = indexPath.row;
+        
+        if (row == 0) {
+            SecondTableViewController *newTableViewController = [[SecondTableViewController alloc] init];
+            [self.navigationController pushViewController:newTableViewController animated:YES];
+        }
+        else {
+            // Create and configure a new detail view controller appropriate for the selection.
+            UIViewController <SubstitutableDetailViewController> *detailViewController = nil;
+            
+            JTCStartOfDayViewController *newDetailViewController = [[JTCStartOfDayViewController alloc] initWithNibName:@"FirstDetailView" bundle:nil];
+            detailViewController = newDetailViewController;
+            
+            detailViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            
+            // DetailViewManager exposes a property, detailViewController.  Set this property
+            // to the detail view controller we want displayed.  Configuring the detail view
+            // controller to display the navigation button (if needed) and presenting it
+            // happens inside DetailViewManager.
+            detailViewManager.detailViewController = detailViewController;
+            
+        }
+
     }
 }
 
@@ -228,8 +256,16 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    // Set appropriate labels for the cells.
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Home";
+    }
+    else if (indexPath.row == 1) {
+        cell.textLabel.text = @"Start of Day";
+    }
+    else {
+        cell.textLabel.text = @"Assignments";
+    }
 }
 
 @end
