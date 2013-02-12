@@ -9,6 +9,9 @@
 #import "JTCDetailViewManager.h"
 
 @interface JTCDetailViewManager()
+@property (weak, nonatomic)UISplitViewController *splitViewController;
+@property (strong, nonatomic)NSArray *detailControllers;
+@property (weak, nonatomic)UIViewController *currentDetailController;
 
 @property (nonatomic, retain) UIBarButtonItem *navigationPaneButtonItem;
 @property (nonatomic, retain) UIPopoverController *navigationPopoverController;
@@ -17,38 +20,26 @@
 
 @implementation JTCDetailViewManager
 
-- (void)setDetailViewController:(UIViewController<SubstitutableDetailViewController> *)detailViewController
-{
-    // Clear any bar button item from the detail view controller that is about to
-    // no longer be displayed.
-    self.detailViewController.navigationPaneBarButtonItem = nil;
-    
-    _detailViewController = detailViewController;
-    
-    // Set the new detailViewController's navigationPaneBarButtonItem to the value of our
-    // navigationPaneButtonItem.  If navigationPaneButtonItem is not nil, then the button
-    // will be displayed.
-    //_detailViewController.navigationPaneBarButtonItem = self.navigationPaneButtonItem;
-    
-    // Update the split view controller's view controllers array.
-    // This causes the new detail view controller to be displayed.
-    UIViewController *navigationViewController = [self.splitViewController.viewControllers objectAtIndex:0];
-    NSArray *viewControllers = [[NSArray alloc] initWithObjects:navigationViewController, _detailViewController, nil];
-    self.splitViewController.viewControllers = viewControllers;
-    
-    // Dismiss the navigation popover if one was present.  This will
-    // only occur if the device is in portrait.
-    if (self.navigationPopoverController)
-        [self.navigationPopoverController dismissPopoverAnimated:YES];
+@synthesize splitViewController = _splitViewController;
+@synthesize detailControllers = _detailControllers;
+@synthesize navigationPaneButtonItem = _navigationPaneButtonItem;
+@synthesize navigationPopoverController = _navigationPopoverController;
+@synthesize currentDetailController = _currentDetailController;
 
-}
 
--(id)initWithSplitViewController:(UISplitViewController *)splitViewController
+-(id)initWithSplitViewController:(UISplitViewController *)splitViewController withDetailRootControllers:(NSArray *)detailControllers
 {
     self = [super init];
     
     if (self) {
         self.splitViewController = splitViewController;
+        _detailControllers = detailControllers;
+        UINavigationController *detailRoot = [splitViewController.viewControllers objectAtIndex:1];
+        _currentDetailController = detailRoot;
+        
+        splitViewController.delegate = self;
+        UITabBarController *tabBar = [splitViewController.viewControllers objectAtIndex:0];
+        tabBar.delegate = self;
     }
     
     return self;
@@ -75,13 +66,12 @@ forPopoverController:(UIPopoverController *)pc
 {
     // If the barButtonItem does not have a title (or image) adding it to a toolbar
     // will do nothing.
-    barButtonItem.title = @"Navigation";
+    barButtonItem.title = NSLocalizedString(@"Menu", @"Menu");
     
     self.navigationPaneButtonItem = barButtonItem;
     self.navigationPopoverController = pc;
     
-    // Tell the detail view controller to show the navigation button.
-    self.detailViewController.navigationPaneBarButtonItem = barButtonItem;
+    [self.currentDetailController.navigationItem setLeftBarButtonItem:self.navigationPaneButtonItem animated:YES];
 }
 
 // -------------------------------------------------------------------------------
@@ -95,7 +85,32 @@ invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
     self.navigationPopoverController = nil;
     
     // Tell the detail view controller to remove the navigation button.
-    self.detailViewController.navigationPaneBarButtonItem = nil;
+    [self.currentDetailController.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+#pragma mark - UITabBarControllerDelegate
+
+// change detail view to reflect the current master controller
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    UINavigationController* detailRootController = [self.detailControllers objectAtIndex:tabBarController.selectedIndex];
+    UIViewController* detailController = detailRootController.topViewController;
+    
+    if(detailController != self.currentDetailController)
+    {
+        // swap button in detail controller
+        [self.currentDetailController.navigationItem setLeftBarButtonItem:nil animated:NO];
+        self.currentDetailController = detailController;
+        [self.currentDetailController.navigationItem setLeftBarButtonItem:self.navigationPaneButtonItem animated:NO];
+        
+        // update controllers in splitview
+        UIViewController* tabBarController = [self.splitViewController.viewControllers objectAtIndex:0];
+        self.splitViewController.viewControllers = [NSArray arrayWithObjects:tabBarController,detailRootController, nil];
+        
+        // replace the passthrough views with current detail navigationbar
+        if([self.navigationPopoverController isPopoverVisible]){
+            self.navigationPopoverController.passthroughViews = [NSArray arrayWithObject:detailRootController.navigationBar];
+        }
+    }
 }
 
 @end

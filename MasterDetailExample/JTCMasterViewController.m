@@ -9,7 +9,6 @@
 #import "JTCMasterViewController.h"
 #import "JTCDetailViewController.h"
 #import "JTCDetailViewManager.h"
-#import "JTCStartOfDayViewController.h"
 
 @interface JTCMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -30,39 +29,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (JTCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                            inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender
-{
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
 }
 
 #pragma mark - Table View
@@ -87,7 +62,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,20 +93,20 @@
         
         // Get a reference to the DetailViewManager.
         // DetailViewManager is the delegate of our split view.
-        JTCDetailViewManager *detailViewManager = (JTCDetailViewManager*)self.splitViewController.delegate;
+        //JTCDetailViewManager *detailViewManager = (JTCDetailViewManager*)self.splitViewController.delegate;
         
         NSUInteger row = indexPath.row;
         
         if (row == 0) {
-            SecondTableViewController *newTableViewController = [[SecondTableViewController alloc] init];
-            [self.navigationController pushViewController:newTableViewController animated:YES];
+            //SecondTableViewController *newTableViewController = [[SecondTableViewController alloc] init];
+            //[self.navigationController pushViewController:newTableViewController animated:YES];
         }
         else {
             // Create and configure a new detail view controller appropriate for the selection.
             UIViewController <SubstitutableDetailViewController> *detailViewController = nil;
             
-            JTCStartOfDayViewController *newDetailViewController = [[JTCStartOfDayViewController alloc] initWithNibName:@"FirstDetailView" bundle:nil];
-            detailViewController = newDetailViewController;
+            //JTCStartOfDayViewController *newDetailViewController = [[JTCStartOfDayViewController alloc] initWithNibName:@"FirstDetailView" bundle:nil];
+            //detailViewController = newDetailViewController;
             
             detailViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
             
@@ -139,7 +114,7 @@
             // to the detail view controller we want displayed.  Configuring the detail view
             // controller to display the navigation button (if needed) and presenting it
             // happens inside DetailViewManager.
-            detailViewManager.detailViewController = detailViewController;
+            //detailViewManager.detailViewController = detailViewController;
             
         }
 

@@ -12,11 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JTCDetailViewManager : NSObject <UISplitViewControllerDelegate>
+@interface JTCDetailViewManager : NSObject <UISplitViewControllerDelegate, UITabBarControllerDelegate>
 
-@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
-@property (nonatomic, assign) IBOutlet UIViewController<SubstitutableDetailViewController> *detailViewController;
-
--(id)initWithSplitViewController:(UISplitViewController*)splitViewController;
+-(id)initWithSplitViewController:(UISplitViewController*)splitViewController withDetailRootControllers:(NSArray *)detailControllers;
 
 @end

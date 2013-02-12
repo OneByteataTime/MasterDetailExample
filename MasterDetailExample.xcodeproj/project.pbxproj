@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AAC285BD16C5F515008FA6D5 /* JTCStartOfDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */; };
 		AAF1C0DD16C5C5A600527D30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0DC16C5C5A600527D30 /* UIKit.framework */; };
 		AAF1C0DF16C5C5A600527D30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0DE16C5C5A600527D30 /* Foundation.framework */; };
 		AAF1C0E116C5C5A600527D30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF1C0E016C5C5A600527D30 /* CoreGraphics.framework */; };
@@ -43,8 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AAC285BB16C5F515008FA6D5 /* JTCStartOfDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCStartOfDayViewController.h; sourceTree = "<group>"; };
-		AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCStartOfDayViewController.m; sourceTree = "<group>"; };
 		AAF1C0D916C5C5A600527D30 /* MasterDetailExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterDetailExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAF1C0DC16C5C5A600527D30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAF1C0DE16C5C5A600527D30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -140,8 +137,6 @@
 				AAF1C0EE16C5C5A700527D30 /* JTCAppDelegate.m */,
 				AAF1C0F616C5C5A700527D30 /* MainStoryboard_iPhone.storyboard */,
 				AAF1C0F916C5C5A700527D30 /* MainStoryboard_iPad.storyboard */,
-				AAC285BB16C5F515008FA6D5 /* JTCStartOfDayViewController.h */,
-				AAC285BC16C5F515008FA6D5 /* JTCStartOfDayViewController.m */,
 				AAF1C0FF16C5C5A700527D30 /* JTCMasterViewController.h */,
 				AAF1C10016C5C5A700527D30 /* JTCMasterViewController.m */,
 				AAF1C10216C5C5A700527D30 /* JTCDetailViewController.h */,
@@ -305,7 +300,6 @@
 				AAF1C10116C5C5A700527D30 /* JTCMasterViewController.m in Sources */,
 				AAF1C10416C5C5A700527D30 /* JTCDetailViewController.m in Sources */,
 				AAF1C12516C5C63300527D30 /* JTCDetailViewManager.m in Sources */,
-				AAC285BD16C5F515008FA6D5 /* JTCStartOfDayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

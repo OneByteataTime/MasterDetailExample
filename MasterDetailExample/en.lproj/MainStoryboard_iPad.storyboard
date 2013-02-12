@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="64" width="703" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="27">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail View 1" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="27">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-592" y="376"/>
+            <point key="canvasLocation" x="408" y="388"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="18">
@@ -112,22 +112,29 @@
             </objects>
             <point key="canvasLocation" x="745" y="-1392"/>
         </scene>
-        <!--Table View Controller - Check-in-->
+        <!--Master View Controller - Check-in-->
         <scene sceneID="6pO-Xi-9Fu">
             <objects>
-                <tableViewController id="GIA-WH-DS6" sceneMemberID="viewController">
+                <tableViewController id="GIA-WH-DS6" customClass="JTCMasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FE4-O0-7gH">
                         <rect key="frame" x="0.0" y="64" width="320" height="655"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0jN-gk-ucm">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="RRL-Ga-Vpz" style="IBUITableViewCellStyleDefault" id="0jN-gk-ucm">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRL-Ga-Vpz">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -159,7 +166,7 @@
         <scene sceneID="N1g-D4-sD9">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="BE1-Cm-PbE" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="otf-Lx-cSy">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -181,7 +188,18 @@
                     <view key="view" contentMode="scaleToFill" id="6vg-Zd-jAc">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Detail View 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-Tg-VGQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tXP-Tg-VGQ" firstAttribute="top" secondItem="6vg-Zd-jAc" secondAttribute="top" constant="469" id="jtI-13-5jR"/>
+                            <constraint firstItem="tXP-Tg-VGQ" firstAttribute="centerX" secondItem="6vg-Zd-jAc" secondAttribute="centerX" type="default" id="pTS-Wt-AMs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8TE-F0-olK"/>
                     <connections>
@@ -190,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsF-LC-Jr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-592" y="1286"/>
+            <point key="canvasLocation" x="460" y="1282"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="50">
@@ -205,12 +223,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1484" y="358"/>
+            <point key="canvasLocation" x="-504" y="382"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MA9-pX-BE4">
             <objects>
-                <navigationController id="khu-ql-UUf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Detail 2 Root" id="khu-ql-UUf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yx5-K3-wSi">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -223,7 +241,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7H-9u-Xhd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1484" y="1286"/>
+            <point key="canvasLocation" x="-536" y="1282"/>
         </scene>
     </scenes>
     <classes>
@@ -235,12 +253,6 @@
         </class>
         <class className="JTCMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JTCMasterViewController.h"/>
-        </class>
-        <class className="JTCStartOfDayViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JTCStartOfDayViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navigationItem" candidateClass="UINavigationItem"/>
-            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

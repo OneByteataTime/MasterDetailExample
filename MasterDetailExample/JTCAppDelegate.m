@@ -29,20 +29,12 @@
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
         
-        UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        JTCMasterViewController *controller = (JTCMasterViewController *)masterNavigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
+        UIViewController *detail1 = [splitViewController.viewControllers objectAtIndex:1];
+        UIViewController *detail2 = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"Detail 2 Root"];
         
-        self.detailViewManager = [[JTCDetailViewManager alloc] initWithSplitViewController:splitViewController];
-        self.detailViewManager.detailViewController = (UIViewController<SubstitutableDetailViewController> *)navigationController;
+        self.detailViewManager = [[JTCDetailViewManager alloc] initWithSplitViewController:splitViewController withDetailRootControllers:[NSArray arrayWithObjects:detail1, detail2, nil]];
         
-        } else {
-        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        JTCMasterViewController *controller = (JTCMasterViewController *)navigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
     }
     return YES;
 }
